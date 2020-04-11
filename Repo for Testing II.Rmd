@@ -4,5 +4,9 @@ author: "Jimmy DANG"
 date: "4 mars 2020"
 output: html_document
 ---
+options(max.print=20)
 
-HIYA
+
+
+
+

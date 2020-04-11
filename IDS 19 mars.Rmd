@@ -161,3 +161,11 @@ cat(paste("The number", x, "is odd"))
 }
 x
 
+x = 3
+if (x %% 3 == 0){
+cat(paste("The number", x, "is fizz"))
+}else{
+cat(paste("The number", x, "is odd"))
+}
+x
+
