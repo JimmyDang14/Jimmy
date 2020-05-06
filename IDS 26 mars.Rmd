@@ -1,7 +1,0 @@
----
-title: "IDS 26 mars"
-output: html_document
----
-
-15h15
-
