@@ -1,5 +1,0 @@
----
-title: "IDS 21 mai"
-output: html_document
----
-
