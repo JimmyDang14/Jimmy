@@ -14,3 +14,8 @@ library(givedata)
 data("Infraction_Code_penal_par_commune", package="givedata")
 ls()
 Infraction_Code_penal_par_commune %>% head()
+
+library(givedata)
+data("Nombre_de_supermarches_chaque_commune", package="givedata")
+ls()
+Nombre_de_supermarches_chaque_commune %>% head()

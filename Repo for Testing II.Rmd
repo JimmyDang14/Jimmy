@@ -4,7 +4,13 @@ author: "Jimmy DANG"
 date: "4 mars 2020"
 output: html_document
 ---
+rm(list = ls())
+
 options(max.print=20)
+
+square <- function(x){
+return(x^2)
+}
 
 
 
