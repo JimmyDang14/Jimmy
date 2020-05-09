@@ -18,7 +18,19 @@ save(NSupermarches, file="data/NSupermarches.RData")
 mat <- matrix(1:25, ncol = 5)
 sweep(mat, 1, mat, "/")
 
-
+matrixDepensesInvestiss_00_17 <- data.matrix(DepensesInvestiss_00_17)
+matrixNHabitants_00_19 <- data.matrix(NHabitants_00_19)
+matrixNHabitants_00_19prov <- matrixNHabitants_00_19[,-(21:22)]
+matrixratioDIprov <- sweep(matrixDepensesInvestiss_00_17, 1, matrixNHabitants_00_19prov, "/")
+matrixratioDI <- matrixratioDIprov * 1000
+ratioDIprov <- as.data.frame(matrixratioDI)
+ratioDIprov[1] <- NULL
+ratioDIprov2 <- head(cbind(Commune, ratioDIprov), 46)
+ratioDI <- ratioDIprov2[,-1]
+rownames(ratioDI) <- ratioDIprov2[,1]
+rm(matrixNHabitants_00_19prov,
+   matrixDepensesInvestiss_00_17, matrixNHabitants_00_19,
+   matrixratioDIprov, matrixratioDI, ratioDIprov, ratioDIprov2)
 
 
 
