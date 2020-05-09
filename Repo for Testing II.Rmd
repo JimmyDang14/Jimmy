@@ -12,6 +12,9 @@ square <- function(x){
 return(x^2)
 }
 
+mat <- matrix(1:25, ncol = 5)
+sweep(mat, 1, mat, "/")
+
 
 
 

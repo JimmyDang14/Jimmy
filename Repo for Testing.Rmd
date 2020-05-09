@@ -6,16 +6,60 @@ output: html_document
 ---
 rm(list = ls())
 install.packages("devtools")
-library(devtools)
 devtools::install_github("JimmyDang14/givedata")
+
+```{r}
+#Get datasets-------------------------------------------------------
+library(devtools)
 library(dplyr)
 
 library(givedata)
-data("Infraction_Code_penal_par_commune", package="givedata")
+data("DepensesInvestiss_00_17", package="givedata")
 ls()
-Infraction_Code_penal_par_commune %>% head()
+DepensesInvestiss_00_17 %>% head()
 
-library(givedata)
-data("Nombre_de_supermarches_chaque_commune", package="givedata")
+data("Loyermoyen100m2_06_19", package="givedata")
 ls()
-Nombre_de_supermarches_chaque_commune %>% head()
+Loyermoyen100m2_06_19 %>% head()
+
+data("NEcolePrimaire", package="givedata")
+ls()
+NEcolePrimaire %>% head()
+
+data("NHabitants_00_19", package="givedata")
+ls()
+NHabitants_00_19 %>% head()
+
+data("NInfractions_08_19", package="givedata")
+ls()
+NInfractions_08_19 %>% head()
+
+data("NMedecins", package="givedata")
+ls()
+NMedecins %>% head()
+
+data("NParcs", package="givedata")
+ls()
+NParcs %>% head()
+
+data("NSupermarches", package="givedata")
+ls()
+NSupermarches %>% head()
+
+data("PMedianeAppart100m2_00_17", package="givedata")
+ls()
+PMedianeAppart100m2_00_17 %>% head()
+
+data("PMedianeVilla_00_17", package="givedata")
+ls()
+PMedianeVilla_00_17 %>% head()
+
+data("Superficie", package="givedata")
+ls()
+Superficie %>% head()
+```
+
+#Ratio Depenses d'Investissement par habitant
+
+
+depenses <- function()
