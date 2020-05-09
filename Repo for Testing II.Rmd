@@ -11,6 +11,9 @@ options(max.print=20)
 square <- function(x){
 return(x^2)
 }
+save(mydata, file="data/mydata.RData")
+save(NInfractions_08_19, file="data/NInfractions_08_19.RData")
+save(NSupermarches, file="data/NSupermarches.RData")
 
 mat <- matrix(1:25, ncol = 5)
 sweep(mat, 1, mat, "/")
