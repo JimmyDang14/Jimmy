@@ -138,7 +138,7 @@ ratio_NParcsprov <- as.data.frame(matrixratio_NParcsprov)
 ratio_NParcsprov[1] <- NULL
 ratio_NParcsprov2 <- head(cbind(Commune, ratio_NParcsprov), 46)
 ratio_NParcs <- ratio_NParcsprov2[,-1]
-rownames(ratio_ecole) <- ratio_NParcsprov2[,1]
+rownames(ratio_NParcs) <- ratio_NParcsprov2[,1]
 rm(matrixNParcs, matrixSuperficie, matrixratio_NParcsprov, ratio_NParcsprov,ratio_NParcsprov2)
 
 #3.8) Ratio Supermarches par km2
@@ -185,33 +185,33 @@ rm(matrixSuperficieprov,
 
 ###4.0) FONCTIONS PLOT------------------------------
 #4.1) DI (funratioDIplot("nom de la commune")) & examples
-funratioDIplot <- function(a){x <- ratioDI[c(a),c(2:19)]
+fplotratioDI <- function(a){x <- ratioDI[c(a),c(2:19)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="CHF",main="Dépense moyenne d'Investissement par habitant")
 axis(1, at=1:18, labels=2000:2017)}
-funratioDIplot("Genève")
+fplotratioDI("Genève")
 
 #4.2) Loyermoyen100m2 (funloyermoyen100m2plot("nom de la commune"))
-funloyermoyen100m2plot <- function(a){x <- Loyermoyen100m2_06_19_OK[c(a),c(2:15)]
+fplotloyer <- function(a){x <- Loyermoyen100m2_06_19_OK[c(a),c(2:15)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="CHF", ylim = c(1000,2500), main="Loyer moyen appartement 100m2")
 axis(1, at=1:14, labels=2006:2019)}
-funloyermoyen100m2plot("Genève")
+fplotloyer("Genève")
 
 #4.3) Pas besoin pour école car ni la superficie ni le nombre d'école varie (malheureusement, pour cette dernière variable, j'ai pas les dates d'entrées)
 #4.4) Population
-funPopulationplot <- function(a){x <- NHabitants_OK[c(a),c(2:21)]
+fplotpopulation <- function(a){x <- NHabitants_OK[c(a),c(2:21)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="Nombre d'habitants", main="Population")
 axis(1, at=1:20, labels=2000:2019)}
-funPopulationplot("Genève")
+fplotpopulation("Genève")
 #4.5) Ratio Infraction pour 1000 habitants
 
-funratioInfractionplot <- function(a){x <- ratioInfraction[c(a),c(2:13)]
+fplotinfraction <- function(a){x <- ratioInfraction[c(a),c(2:13)]
 tx <- t(x)
-plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="Nombre de crimes",main="Nombre d'infractions du Code Pénal par 1000 habitants")
+plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="Nombre d'infractions",main="Nombre d'infractions du Code Pénal par 1000 habitants")
 axis(1, at=1:12, labels=2008:2019)}
-funratioInfractionplot("Genève")
+fplotinfraction("Genève")
 
 #4.6) Pas besoin pour médecin parce que j'ai pas les dates d'entrée en service des médecins, du coup un plot serait questionnable pour voir l'évolution
 
@@ -220,25 +220,141 @@ funratioInfractionplot("Genève")
 #4.8) Pas besoin pour les supermarchés comme pour école
 
 #4.9) Prix médiane appartement 100m2 
-funprixmedianeappartement100m2plot <- function(a){x <- PMedianeAppart100m2_00_17_OK[c(a),c(2:19)]
+fplotprixappart <- function(a){x <- PMedianeAppart100m2_00_17_OK[c(a),c(2:19)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="CHF", main="Prix médiane d'un appartement 100m2")
 axis(1, at=1:18, labels=2000:2017)}
-funprixmedianeappartement100m2plot("Genève")
+fplotprixappart("Genève")
 
 #4.10) Prix médiane Villa
-funprixmedianevillaplot <- function(a){x <- PMedianeVilla_00_17_OK[c(a),c(2:19)]
+fplotprixvilla <- function(a){x <- PMedianeVilla_00_17_OK[c(a),c(2:19)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="CHF", main="Prix médiane d'une villa (taille inconnue)")
 axis(1, at=1:18, labels=2000:2017)}
-funprixmedianevillaplot("Genève")
+fplotprixvilla("Genève")
 
 #4.11) Densite population (plot discutable vu que c'est la même courbe que celle de la population)
-fundensitepopulationplot <- function(a){x <- Densite_population[c(a),c(2:21)]
+fplotdensitepopulation <- function(a){x <- Densite_population[c(a),c(2:21)]
 tx <- t(x)
 plot( tx,type="l", col="blue", lwd=2, xlab="Year", xaxt = "n", ylab="Nombre de personnes/km2",main="Densité de la population")
 axis(1, at=1:20, labels=2000:2019)}
-fundensitepopulationplot("Genève")
+fplotdensitepopulation("Genève")
 
-##5) CLEAN USELESS DATA------------------------------------------------------
+##5) FONCTIONS POUR OBTENIR DONNEES VOULUES D'UNE COMMUNE A UNE CERTAINE ANNEE------------------------------------------------------
+#5.1) DI
+freturnDI <- function(a,b){x <- ratioDI[c(a),c(b)]
+return(x)
+}
+freturnDI("Genève","2010")
+
+#5.2) Loyermoyen100m2 
+freturnloyer <- function(a,b){x <- Loyermoyen100m2_06_19_OK[c(a),c(b)]
+return(x)
+}
+freturnloyer("Genève","2010")
+
+#5.3) Ratio Ecole
+freturnecole <- function(a){x <- ratio_ecole[c(a), c(2)]
+return(x)
+}
+freturnecole("Genève")
+
+#5.4) Population
+freturnpopulation <- function(a,b){x <- NHabitants_OK[c(a),c(b)]
+return(x)
+}
+freturnpopulation("Genève","2010")
+
+#5.5) Ratio Infraction pour 1000 habitants
+freturninfraction <- function(a,b){x <- ratioInfraction[c(a),c(b)]
+return(x)
+}
+freturninfraction("Genève","2010")
+
+#5.6) Ratio Medecin (pour 1000 habitants)
+freturnmedecin <- function(a){x <- ratioMedecins[c(a), c(2)]
+return(x)
+}
+freturnmedecin("Genève")
+
+#5.7) Ratio Parc
+freturnparc <- function(a){x <- ratio_NParcs[c(a), c(2)]
+return(x)
+}
+freturnparc("Genève")
+
+#5.8) Ratio Supermarche
+freturnsupermarche <- function(a){x <- ratio_Supermarches[c(a), c(2)]
+return(x)
+}
+freturnsupermarche("Genève")
+
+#5.9) Prix médiane appartement 100m2 
+freturnprixappart <- function(a,b){x <- PMedianeAppart100m2_00_17_OK[c(a),c(b)]
+return(x)
+}
+freturnprixappart("Genève","2010")
+
+#5.10) Prix médiane Villa
+freturnprixvilla <- function(a,b){x <- PMedianeVilla_00_17_OK[c(a),c(b)]
+return(x)
+}
+freturnprixvilla("Genève","2010")
+
+#5.11) Densite population 
+freturndensitepopulation <- function(a,b){x <- Densite_population[c(a),c(b)]
+return(x)
+}
+freturndensitepopulation("Genève","2010")
+#5.12) Superficie km2
+freturnsuperficie <- function(a){x <- ratio_ecole[c(a), c(2)]
+return(x)
+}
+freturnsuperficie("Genève")
+
+
+##6) CLEAN USELESS DATA------------------------------------------------------
 rm(Commune, DepensesInvestiss_00_17,NEcolePrimaire, NInfractions_08_19, NMedecins, NParcs, NSupermarches)
+
+
+##7) LISTE FONCTIONS-------------------------------------------
+fplotratioDI("Genève")
+
+fplotloyer("Genève")
+
+fplotpopulation("Genève")
+
+fplotinfraction("Genève")
+
+fplotprixappart("Genève")
+
+fplotprixvilla("Genève")
+
+fplotdensitepopulation("Genève")
+
+
+
+freturnDI("Genève","2010")
+
+freturnloyer("Genève","2010")
+
+freturnecole("Genève")
+
+freturnpopulation("Genève","2010")
+
+freturninfraction("Genève","2010")
+
+freturnmedecin("Genève")
+
+freturnparc("Genève")
+
+freturnsupermarche("Genève")
+
+freturnprixappart("Genève","2010")
+
+freturnprixvilla("Genève","2010")
+
+freturndensitepopulation("Genève","2010")
+
+freturnsuperficie("Genève")
+
