@@ -1,7 +1,5 @@
-
 rm(list = ls())
 
-```{r}
 library(dplyr)
 
 data("DepensesInvestiss_00_17")
@@ -65,7 +63,6 @@ rm(x)
 
 ###3.0)CLEANDATA&RATIOS---------------------------------------
 #3.1)Ratio Depenses d'Investissement de la Commune par habitant
-
 matrixDepensesInvestiss_00_17 <- data.matrix(DepensesInvestiss_00_17)
 matrixNHabitants_00_19 <- data.matrix(NHabitants_00_19)
 matrixNHabitants_00_19prov <- matrixNHabitants_00_19[,-(21:22)]
@@ -100,8 +97,12 @@ NHabitants_00_19[1] <- NULL
 NHabitantsprov <- head(cbind(Commune, NHabitants_00_19), 46)
 NHabitants_OK <- NHabitantsprov[,-1]
 rownames(NHabitants_OK) <- NHabitantsprov[,1]
-rm(NHabitantsprov)
+rm(NHabitants_00_19, NHabitantsprov)
 #3.5) Ratio Infraction pour 1000 habitants
+data("NHabitants_00_19")
+ls()
+NHabitants_00_19 %>% head()
+
 matrixNInfractions_08_19 <- data.matrix(NInfractions_08_19)
 matrixNHabitants_00_19 <- data.matrix(NHabitants_00_19)
 matrixNHabitants_00_19prov <- matrixNHabitants_00_19[,-(3:10)]
@@ -336,3 +337,4 @@ freturnprixvilla("Geneve","2010")
 freturndensitepopulation("Geneve","2010")
 
 freturnsuperficie("Geneve")
+

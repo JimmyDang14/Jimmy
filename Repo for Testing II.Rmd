@@ -33,4 +33,32 @@ rm(matrixNHabitants_00_19prov,
    matrixratioDIprov, matrixratioDI, ratioDIprov, ratioDIprov2)
 
 
+colnames(DepensesInvestiss_00_17) <- c("", "better","worse")
 
+
+
+save(DepensesInvestiss_00_17, file="data/DepensesInvestiss_00_17.RData")
+save(Loyermoyen100m2_06_19, file="data/Loyermoyen100m2_06_19.RData")
+save(NEcolePrimaire, file="data/NEcolePrimaire.RData")
+save(NHabitants_00_19, file="data/NHabitants_00_19.RData")
+save(NInfractions_08_19, file="data/NInfractions_08_19.RData")
+save(NMedecins, file="data/NMedecins.RData")
+save(NParcs, file="data/NParcs.RData")
+save(NSupermarches, file="data/NSupermarches.RData")
+save(PMedianeAppart100m2_00_17, file="data/PMedianeAppart100m2_00_17.RData")
+save(PMedianeVilla_00_17, file="data/PMedianeVilla_00_17.RData")
+save(Superficie, file="data/Superficie.RData")
+
+
+
+DepensesInvestiss_00_17[1] <- NULL
+DepensesInvestiss_00_17prov <- head(cbind(Commune, DepensesInvestiss_00_17), 46)
+DepensesInvestiss_00_17OK <- DepensesInvestiss_00_17prov[,-1]
+rownames(DepensesInvestiss_00_17OK) <- DepensesInvestiss_00_17prov[,1]
+rm(DepensesInvestiss_00_17, DepensesInvestiss_00_17prov)
+
+
+source("C:/Users/Soajin14/Documents/GitHub/GenevAnalytics.Rmd")
+if(!exists("foo", mode="function")) source("GenevAnalytics")
+
+getwd()
