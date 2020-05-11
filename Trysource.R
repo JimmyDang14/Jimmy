@@ -1,3 +1,3 @@
 #Trysource
 
-source("C:/Users/Soajin14/Documents/GitHub/Repo-for-Testing/GenevAnalyticsSELF.R")
+source("C:/Users/Soajin14/Documents/GitHub/GenevAnalytics/GenevAnalyticsSELF.R")
